@@ -7,5 +7,6 @@
     <title>Imageo</title>
 </head>
 <body>
+    <button>Logout</button>
 </body>
 </html>
