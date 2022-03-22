@@ -1,6 +1,23 @@
 <?php
 include_once("bootstrap.php");
 
+if(!empty($_POST)){
+    $email = $_POST['email'];
+    $password = $_POST['password'];
+   
+    include_once(__DIR__ . "/classes/User.php");
+    $user = new User();
+    $user->setEmail($email);
+    $user->setPassword($password);
+    if($user->canLogin()){
+     echo "SESSION HAS STARTED";
+     session_start();
+    }
+    else{
+     $error = true;
+    }
+  }
+  
 ?><!DOCTYPE html>
 <html lang="en">
 <head>
@@ -14,7 +31,7 @@ include_once("bootstrap.php");
         <form method="post" action=>
             <input name="email" placeholder="Email" type="email" required autofocus />
             <input name="password" placeholder="Password" type="password" required />
-            <input name="register" type="submit" value="Register" />
+            <input type="submit" value="Login" />
             <button name="forgetPassword">Forget password?</button>
         </form>
     </div>
