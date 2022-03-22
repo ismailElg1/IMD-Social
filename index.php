@@ -1,7 +1,17 @@
 <?php
 include_once("bootstrap.php");
+include_once(__DIR__ . "/helpers/Security.php");
 
-//for now i will send user to login page only
+if(Security::onlyLoggedInUsers()){
+    echo "You are logged in";
+   
+}
+else{
+    var_dump($_SESSION['user']);
+    echo $_SESSION['user'];
+    echo "You are not logged in";
+    header("Location: login.php");
+}
 
 ?><!DOCTYPE html>
 <html lang="en">

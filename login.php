@@ -12,11 +12,12 @@ if(!empty($_POST)){
     
     if($user->canLogin()){
      echo "SESSION HAS STARTED";
-     session_start();
      header("Location: index.php");
+     session_start();
+     
     }
     else{
-        echo "SESSION HAS FAILED";
+     echo "SESSION HAS FAILED";
      $error = true;
     }
   }
