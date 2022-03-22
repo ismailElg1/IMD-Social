@@ -1,6 +1,8 @@
 <?php
 include_once("bootstrap.php");
 
+//for now i will send user to login page only
+header("location: login.php");
 ?><!DOCTYPE html>
 <html lang="en">
 <head>
@@ -10,6 +12,6 @@ include_once("bootstrap.php");
     <title>Imageo</title>
 </head>
 <body>
-    <button>Logout</button>
+   Welcome to the page
 </body>
 </html>
