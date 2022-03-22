@@ -1,1 +1,63 @@
 <?php
+    include_once(__DIR__ . "/Db.php");
+
+    class User {
+        private $email;
+        private $password;
+
+        public function getEmail()
+        {
+                return $this->email;
+        }
+
+        public function setEmail($email)
+        {
+                $this->email = $email;
+
+                return $this;
+        }
+
+        public function getPassword()
+        {
+                return $this->password;
+        }
+
+        public function setPassword( $password )
+        {
+                if(strlen($password) < 5){
+                    throw new Exception("Passwords must be longer than 5 characters.");
+                }
+
+                $this->password = $password;
+                return $this;
+        }
+
+        public function canLogin() {
+        
+            $conn = Db::getInstance();;
+            $stmt = $conn->prepare("select * from users where email = :email");
+            $stmt -> bindValue(":email", $this -> email);
+            $stmt -> execute();
+            $user = ($stmt->fetch());
+            $hash = $user['password'];
+     
+            if(!$user){
+                echo "user not exist";
+                return false;
+            }
+            //password not hashed yet
+            // if(password_verify($this->password, $user['password'])){
+            //     echo "nice";
+            //     return true;
+            // }
+              if($this->password == $user['password']){
+                echo "nice";
+                return true;
+            }
+            else{
+                echo "password not right";
+                return false;
+            }
+        }
+
+    }

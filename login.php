@@ -9,11 +9,14 @@ if(!empty($_POST)){
     $user = new User();
     $user->setEmail($email);
     $user->setPassword($password);
+    
     if($user->canLogin()){
      echo "SESSION HAS STARTED";
      session_start();
+     header("Location: index.php");
     }
     else{
+        echo "SESSION HAS FAILED";
      $error = true;
     }
   }
