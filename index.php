@@ -1,14 +1,11 @@
 <?php
-include_once("bootstrap.php");
+// include_once("bootstrap.php");
 include_once(__DIR__ . "/helpers/Security.php");
-
 if(Security::onlyLoggedInUsers()){
-    echo "You are logged in";
-   
+
 }
 else{
-    var_dump($_SESSION['user']);
-    echo $_SESSION['user'];
+
     echo "You are not logged in";
     header("Location: login.php");
 }
@@ -23,5 +20,7 @@ else{
 </head>
 <body>
    Welcome to the page
+
+   <a href="logout.php">Log out?</a>
 </body>
 </html>

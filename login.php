@@ -1,6 +1,7 @@
 <?php
 // include_once("bootstrap.php");
 
+
 if(!empty($_POST)){
     $username = $_POST['username'];
     $password = $_POST['password'];
@@ -11,13 +12,11 @@ if(!empty($_POST)){
     $user->setPassword($password);
     
     if($user->canLogin()){
-     echo "SESSION HAS STARTED";
-    //  header("Location: index.php");
      session_start();
-     
+     $_SESSION['username'] = $username;
+     header('Location: index.php');
     }
     else{
-     echo "SESSION HAS FAILED";
      $error = true;
     }
   }

@@ -24,9 +24,9 @@
 
         public function setPassword( $password )
         {
-                if(strlen($password) < 5){
-                    throw new Exception("Passwords must be longer than 5 characters.");
-                }
+                // if(strlen($password) < 5){
+                //     throw new Exception("Passwords must be longer than 5 characters.");
+                // }
 
                 $this->password = $password;
                 return $this;
@@ -35,12 +35,12 @@
         public function canLogin() {
         
             $conn = Db::getInstance();;
-            $stmt = $conn->prepare("select * from users where email = :email");
-            $stmt -> bindValue(":email", $this -> username);
+            $stmt = $conn->prepare("select * from users where username = :username");
+            $stmt -> bindValue(":username", $this -> username);
             $stmt -> execute();
             $user = ($stmt->fetch());
             $hash = $user['password'];
-     
+          
             if(!$user){
                 echo "user not exist";
                 return false;
@@ -51,8 +51,7 @@
             //     return true;
             // }
             if($this->password == $hash){
-                echo "nice";
-                $_SESSION['user'] = $user;
+                
                 return true;
             }
             else{
