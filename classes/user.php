@@ -2,17 +2,17 @@
     include_once(__DIR__ . "/Db.php");
 
     class User {
-        private $email;
+        private $username;
         private $password;
 
-        public function getEmail()
+        public function getUsername()
         {
-                return $this->email;
+                return $this->username;
         }
 
-        public function setEmail($email)
+        public function setUsername($username)
         {
-                $this->email = $email;
+                $this->username = $username;
 
                 return $this;
         }
@@ -36,7 +36,7 @@
         
             $conn = Db::getInstance();;
             $stmt = $conn->prepare("select * from users where email = :email");
-            $stmt -> bindValue(":email", $this -> email);
+            $stmt -> bindValue(":email", $this -> username);
             $stmt -> execute();
             $user = ($stmt->fetch());
             $hash = $user['password'];

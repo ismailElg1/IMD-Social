@@ -1,13 +1,13 @@
 <?php
-include_once("bootstrap.php");
+// include_once("bootstrap.php");
 
 if(!empty($_POST)){
-    $email = $_POST['email'];
+    $username = $_POST['username'];
     $password = $_POST['password'];
    
     include_once(__DIR__ . "/classes/User.php");
     $user = new User();
-    $user->setEmail($email);
+    $user->setUsername($username);
     $user->setPassword($password);
     
     if($user->canLogin()){
@@ -21,6 +21,7 @@ if(!empty($_POST)){
      $error = true;
     }
   }
+
   
 ?><!DOCTYPE html>
 <html lang="en">
@@ -33,7 +34,7 @@ if(!empty($_POST)){
 <body>
     <div id="loginForm">
         <form method="post" action="">
-            <input name="email" placeholder="Email" type="email" required autofocus />
+            <input name="username" placeholder="Username" type="text" required autofocus />
             <input name="password" placeholder="Password" type="password" required />
             <input type="submit" value="Login" />
             <button name="forgetPassword">Forget password?</button>
