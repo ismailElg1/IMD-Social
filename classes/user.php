@@ -39,7 +39,9 @@
             $stmt -> bindValue(":username", $this -> username);
             $stmt -> execute();
             $user = ($stmt->fetch());
-            $hash = $user['password'];
+            if(isset($user['password'])){
+                $hash = $user['password'];
+            }
           
             if(!$user){
                 echo "user not exist";
