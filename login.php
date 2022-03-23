@@ -12,7 +12,7 @@ if(!empty($_POST)){
     
     if($user->canLogin()){
      echo "SESSION HAS STARTED";
-     header("Location: index.php");
+    //  header("Location: index.php");
      session_start();
      
     }
@@ -32,7 +32,7 @@ if(!empty($_POST)){
 </head>
 <body>
     <div id="loginForm">
-        <form method="post" action=>
+        <form method="post" action="">
             <input name="email" placeholder="Email" type="email" required autofocus />
             <input name="password" placeholder="Password" type="password" required />
             <input type="submit" value="Login" />

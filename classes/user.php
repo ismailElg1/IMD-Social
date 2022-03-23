@@ -50,8 +50,9 @@
             //     echo "nice";
             //     return true;
             // }
-              if($this->password == $user['password']){
+            if($this->password == $hash){
                 echo "nice";
+                $_SESSION['user'] = $user;
                 return true;
             }
             else{
