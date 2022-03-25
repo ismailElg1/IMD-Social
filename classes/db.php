@@ -19,7 +19,7 @@ abstract class Db {
 
             // get the configuration for our connection from one central settings file
             $config = self::getConfig();
-            $host = $config['host'];
+            $host = $config['server'];
             $database = $config['database'];
             $user = $config['user'];
             $password = $config['password'];
