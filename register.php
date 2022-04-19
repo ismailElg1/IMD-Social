@@ -52,7 +52,18 @@
                 <input class="form-input ani password" name="password" placeholder="Password" type="password" />
                 <span class="border-bottom-animation left"></span>
             </div>
-            <input class="register" name="register" type="submit" value="Register" />
+
+            <div class="container">
+                <div class="center">
+                    <button class="register" name="register" type="submit" value="Register">
+                        <svg width="180px" height="60px" viewBox="0 0 180 60" class="border">
+                        <polyline points="179,1 179,59 1,59 1,1 179,1" class="bg-line" />
+                        <polyline points="179,1 179,59 1,59 1,1 179,1" class="hl-line" />
+                        </svg>
+                        <span id="registerBtn">REGISTER</span>
+                    </button>
+                </div>
+            </div>
         </form>
     </div>
 </body>
