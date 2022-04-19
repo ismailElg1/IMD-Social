@@ -82,12 +82,11 @@
             }
           
             if(!$user){
-                echo "user not exist";
+                throw new Exception("User not exist.");
                 return false;
             }
             //password not hashed yet
             if(password_verify($this->password, $user['password'])){
-                echo "nice";
                 return true;
             }
             // if($this->password == $hash){
@@ -95,14 +94,14 @@
             //     return true;
             // }
             else{
-                echo "password not right";
+                throw new Exception("Password not right.");
                 return false;
             }
         }
 
         public function register() {
             $options = [
-                'cost' => 15
+                'cost' => 12
             ];
             $password = password_hash($this->password, PASSWORD_DEFAULT, $options);
             $email = $this->email;

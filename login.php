@@ -3,7 +3,8 @@
 
 
 if(!empty($_POST)){
-    $username = $_POST['username'];
+    try{
+        $username = $_POST['username'];
     $password = $_POST['password'];
    
     include_once(__DIR__ . "/classes/User.php");
@@ -16,8 +17,11 @@ if(!empty($_POST)){
      $_SESSION['username'] = $username;
      header('Location: index.php');
     }
-    else{
-     $error = true;
+  
+    }
+    //catch
+    catch(Exception $e){
+        echo $e->getMessage();
     }
   }
 
