@@ -112,4 +112,12 @@
             $stmt->execute();
         }
 
+        //delete user from database
+        public function deleteUser() {
+            $conn = Db::getInstance();
+            $sql = "DELETE FROM users WHERE username = '$this->username'";
+            $stmt= $conn->prepare($sql);
+            $stmt->execute();
+        }
+
     }
