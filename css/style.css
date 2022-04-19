@@ -1,0 +1,70 @@
+#registerForm{
+    width: 300px;
+    height: 300px;
+    margin: 150px auto;
+}
+
+.form-group {
+	position: relative;
+}
+
+#registerForm form{
+    display: flex;
+    flex-direction: column;
+}
+
+#registerForm h1{
+    font-family: 'Comfortaa', sans-serif;
+    color: black;
+    font-weight: 700;
+    text-align: center;
+    margin-bottom: 35px;
+}
+
+.form-input{
+    position: relative;
+    width: 290px;
+    height: 25px;
+    font-size: 12px;
+    border: none;
+    margin-top: 15px;
+    outline: none;
+    box-shadow: none;
+    -webkit-transition: all .5s ease;
+    -moz-transition: all .5s ease;
+     -ms-transition: all .5s ease;
+      -o-transition: all .5s ease;
+        transition: all .5s ease;
+}
+
+.form-input.ani{
+  position: relative;
+  background: transparent;
+  padding: 0;
+  border-bottom: 2px solid rgba(0, 0, 0, .2);
+}
+
+.form-input.ani ~ .border-bottom-animation {
+  position: absolute;
+  content: "";
+  width: 0;
+  background: rgba(0, 0, 0, .2);
+  height: 2px;
+  z-index: 99;
+  -webkit-transition: all .5s ease;
+     -moz-transition: all .5s ease;
+      -ms-transition: all .5s ease;
+       -o-transition: all .5s ease;
+          transition: all .5s ease;
+}
+
+.form-input.ani ~ .border-bottom-animation.left {
+  left: 0;
+  bottom: 0;
+}
+
+.form-input.ani:hover ~ .border-bottom-animation.left {
+  background: #e63900;
+  width: 100%;
+}
+
