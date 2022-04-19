@@ -21,7 +21,7 @@ if(!empty($_POST)){
     }
     //catch
     catch(Exception $e){
-        echo $e->getMessage();
+        $error = $e->getMessage();
     }
   }
 
@@ -37,6 +37,10 @@ if(!empty($_POST)){
 <body>
     <div id="loginForm">
         <form method="post" action="">
+           
+            <?php if(!empty($error)){ ?>
+                <div class="errorMessage"><?php echo $error; ?></div>
+            <?php } ?>
             <input name="username" placeholder="Username" type="text" required autofocus />
             <input name="password" placeholder="Password" type="password" required />
             <input type="submit" value="Login" />
