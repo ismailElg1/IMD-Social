@@ -118,6 +118,6 @@
             $sql = "DELETE FROM users WHERE username = '$this->username'";
             $stmt= $conn->prepare($sql);
             $stmt->execute();
-        }
+        }       
 
     }

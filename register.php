@@ -10,7 +10,7 @@
             $user->register();
             
             session_start();
-            $_SESSION['user'] = $user->getUsername();
+            $_SESSION['username'] = $user->getUsername();
             header("Location: index.php");
         }
         catch(Throwable $error) {
