@@ -86,14 +86,14 @@
                 return false;
             }
             //password not hashed yet
-            // if(password_verify($this->password, $user['password'])){
-            //     echo "nice";
-            //     return true;
-            // }
-            if($this->password == $hash){
-                
+            if(password_verify($this->password, $user['password'])){
+                echo "nice";
                 return true;
             }
+            // if($this->password == $hash){
+                
+            //     return true;
+            // }
             else{
                 echo "password not right";
                 return false;
