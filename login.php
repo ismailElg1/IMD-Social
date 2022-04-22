@@ -4,7 +4,7 @@
 
 if(!empty($_POST)){
     try{
-        $username = $_POST['username'];
+    $username = $_POST['username'];
     $password = $_POST['password'];
    
     include_once(__DIR__ . "/classes/User.php");
