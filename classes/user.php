@@ -107,8 +107,10 @@
             $email = $this->email;
             $username = $this->username;
             $conn = Db::getInstance();
-            $sql = "INSERT INTO users (email, username, password) VALUES ('$email','$username','$password')";
-            $stmt= $conn->prepare($sql);
+            $stmt= $conn->prepare("INSERT INTO users (email, username, password) VALUES (:email,:username,:password)");
+            $stmt->bindValue(":email", $email);
+            $stmt->bindValue(":username", $username);
+            $stmt->bindValue(":password", $password);
             $stmt->execute();
         }
 

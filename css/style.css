@@ -122,13 +122,9 @@ svg {
   color: white;
   font-size: 18px;
   font-weight: 100;
-  transition: 1s ease-in-out;
 }
 
-.register span:hover{
-  transition: 1s ease-in-out;
-  color: black;
-}
+
 
 
 
