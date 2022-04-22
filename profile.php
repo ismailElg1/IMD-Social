@@ -4,6 +4,8 @@ include_once(__DIR__ . "/helpers/Security.php");
 if(Security::onlyLoggedInUsers()){
     //get the user name
     $username = $_SESSION['username'];
+    include_once(__DIR__ . "/partials/nav.php");
+    
 }
 else{
     //send user to login page
