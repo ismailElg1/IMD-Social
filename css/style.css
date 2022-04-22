@@ -12,7 +12,9 @@ body{
   height: 500px;
 }
 
-#registerForm{
+
+
+.Form{
     width: 300px;
     height: 300px;
     margin: 120px auto;
@@ -22,12 +24,12 @@ body{
 	position: relative;
 }
 
-#registerForm form{
+.Form form{
     display: flex;
     flex-direction: column;
 }
 
-#registerForm h1{
+.Form h1{
     font-family: 'Comfortaa', sans-serif;
     color: white;
     font-weight: 700;
@@ -101,7 +103,7 @@ body{
   position: absolute;
 }
 
-.register {
+.btn {
   width: 180px;
   height: 60px;
   cursor: pointer;
@@ -109,6 +111,22 @@ body{
   border: 1px solid rgb(255, 191, 162);
   outline: none;
   transition: 1s ease-in-out;
+}
+
+#forget{
+  font-family: "Montserrat", sans-serif;
+  cursor: pointer;
+  background: transparent;
+  border: none;
+  transition: 0.3s ease-out;
+  margin-top: 70px;
+  color:rgb(255, 240, 230);
+}
+
+#forget:hover{
+  transition: 0.3s ease-out;
+  color: white;
+  transform: scale(1.01);
 }
 
 svg {
@@ -122,21 +140,34 @@ svg {
   transition: 1s ease-in-out;
 }
 
-.register:hover {
+.btn:hover {
   transition: 1s ease-in-out;
   background: rgb(234, 105, 46);
 }
 
-.register:hover svg {
+.btn:hover svg {
   stroke-dashoffset: -480;
 }
 
-.register span{
+.btn span{
   font-family: 'Comfortaa', sans-serif;;
   color: white;
   font-size: 18px;
   font-weight: 100;
 }
+
+.errorMessage{
+  text-align: center;
+  font-family: 'Montserrat', sans-serif;
+  color: rgb(27, 27, 27);
+  font-size: 12px;
+  margin-top: 60px;
+  margin-bottom: -87px;
+  background-color: white;
+  padding:6px 0px;
+}
+
+
 
 
 
