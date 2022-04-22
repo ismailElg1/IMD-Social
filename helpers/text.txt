@@ -1,0 +1,10 @@
+      <?php 
+        if(isset($loggedIn)){
+            if(!$loggedIn){
+                echo '<a href="../register.php">Register</a>
+                <a href="../login.php">Login</a>';
+            }
+            else{
+            }
+        }
+       ?>

@@ -31,12 +31,15 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <?php include_once(__DIR__ . "/helpers/fonts.php")?>
     <link rel="stylesheet" type="text/css" href="css/style.css">
+    <link rel="stylesheet" type="text/css" href="css/nav.css">
     <title>Register - Imageo</title>
 </head>
+
 <body>
     <?php if(isset($error)): ?>
         <div class="alert alert-danger"><?php echo $error; ?></div>
     <?php endif; ?>
+    <?php include_once(__DIR__ . "/partials/nav.php")?>
     <div id="registerForm">
         <form method="post" action=>
             <h1>Register</h1>
@@ -60,7 +63,7 @@
                         <polyline points="179,1 179,59 1,59 1,1 179,1" class="bg-line" />
                         <polyline points="179,1 179,59 1,59 1,1 179,1" class="hl-line" />
                         </svg>
-                        <span id="registerBtn">REGISTER</span>
+                        <span id="registerBtn">SIGN UP</span>
                     </button>
                 </div>
             </div>

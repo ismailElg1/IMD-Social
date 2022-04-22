@@ -7,22 +7,13 @@ else if($username = $_SESSION['username']){
     $loggedIn = true;
 }
 ?>
-<link rel="stylesheet" type="text/css" href="../css/nav.css">
- <nav>
-    <ul>
-        <li><a href="../index.php">Home</a></li>
-        <li><a href="../profile.php">Profile</a></li>
-       <?php 
-        if(isset($loggedIn)){
-            if(!$loggedIn){
-                echo '<li><a href="../register.php">Register</a></li>
-                <li><a href="../login.php">Login</a></li>';
-            }
-            else{
-              
-            }
-            
-        }
-       ?>
-    </ul>
-</nav>
+<div id="logo">
+    <a href="#">Imageo</a>
+</div>
+<div id="nav" class="navMenu">
+      <a href="#">Home</a>
+      <a href="#">Profile</a>
+      <a href="../login.php">Login</a>
+      <a href="../register.php">Register</a>
+</div>
+
