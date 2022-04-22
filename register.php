@@ -31,34 +31,37 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <?php include_once(__DIR__ . "/helpers/fonts.php")?>
     <link rel="stylesheet" type="text/css" href="css/style.css">
-    <link rel="stylesheet" type="text/css" href="css/nav.css">
+
     <title>Register - Imageo</title>
 </head>
 
 <body>
-    <?php if(isset($error)): ?>
-        <div class="alert alert-danger"><?php echo $error; ?></div>
-    <?php endif; ?>
+    
     <?php include_once(__DIR__ . "/partials/nav.php")?>
-    <div id="registerForm">
+            <?php if(isset($error)): ?>
+                <div class="errorMessage"><?php echo $error; ?></div>
+            <?php endif; ?>
+    <div id="registerForm" class="Form">
+            
         <form method="post" action=>
+            
             <h1>Register</h1>
             <div class="form-group">
-                <input class="form-input ani email" name="email" placeholder="Email" type="email" />
+                <input class="form-input ani email" name="email" placeholder="Email" type="email" required autofocus/>
                 <span class="border-bottom-animation left"></span>
             </div>
             <div class="form-group">
-                <input class="form-input ani username" name="username" placeholder="Username" type="username" />
+                <input class="form-input ani username" name="username" placeholder="Username" type="username" required autofocus />
                 <span class="border-bottom-animation left"></span>
             </div>
             <div class="form-group">
-                <input class="form-input ani password" name="password" placeholder="Password" type="password" />
+                <input class="form-input ani password" name="password" placeholder="Password" type="password" required/>
                 <span class="border-bottom-animation left"></span>
             </div>
 
             <div class="container">
                 <div class="center">
-                    <button class="register" name="register" type="submit" value="Register">
+                    <button class="btn" name="register" type="submit" value="Register">
                         <svg width="180px" height="60px" viewBox="0 0 180 60" class="border">
                         <polyline points="179,1 179,59 1,59 1,1 179,1" class="bg-line" />
                         <polyline points="179,1 179,59 1,59 1,1 179,1" class="hl-line" />

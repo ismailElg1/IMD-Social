@@ -7,13 +7,14 @@ else if($username = $_SESSION['username']){
     $loggedIn = true;
 }
 ?>
+<link rel="stylesheet" type="text/css" href="css/nav.css">
 <div id="logo">
     <a href="#">Imageo</a>
 </div>
 <div id="nav" class="navMenu">
       <a href="#">Home</a>
       <a href="#">Profile</a>
-      <a href="../login.php">Login</a>
-      <a href="../register.php">Register</a>
+      <a href="login.php">Login</a>
+      <a href="register.php">Register</a>
 </div>
 
