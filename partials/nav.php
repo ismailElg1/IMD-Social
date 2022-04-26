@@ -13,7 +13,7 @@ else if($username = $_SESSION['username']){
 </div>
 <div id="nav" class="navMenu">
       <a href="#">Home</a>
-      <a href="#">Profile</a>
+      <a href="profile.php">Profile</a>
       <a href="login.php">Login</a>
       <a href="register.php">Register</a>
 </div>

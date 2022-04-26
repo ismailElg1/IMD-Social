@@ -19,6 +19,7 @@ else{
     <title>Imageo</title>
 </head>
 <body>
+    <?php include_once(__DIR__ . "/partials/nav.php")?>
    Welcome to the page
 
    <a href="logout.php">Log out?</a>

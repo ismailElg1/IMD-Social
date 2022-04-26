@@ -7,7 +7,6 @@
                 return false;
             }
             else{
-                echo " logged in";
                 return true;
             }
         }
