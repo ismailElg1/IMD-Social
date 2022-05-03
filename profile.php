@@ -20,8 +20,6 @@ else{
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <?php include_once(__DIR__ . "/helpers/fonts.php")?>
     <title>Profile - <?php echo $username ?></title>
-    <link rel="stylesheet" type="text/css" href="css/profile.css">
-    <link rel="stylesheet" type="text/css" href="css/style.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 </head>
 <body>
@@ -40,8 +38,48 @@ else{
                 <input class="form-input ani email" placeholder="Change username" type="text"/>
                 <span class="border-bottom-animation left"></span>
         </div>
-        <button class="fa fa-pencil"></button>
+        <div class="form-group">
+                <input class="form-input ani email" placeholder="Add 2nd email" type="text"/>
+                <span class="border-bottom-animation left"></span>
+        </div>
+        <div class="form-group">
+                <input class="form-input ani email" placeholder="Bio" type="text"/>
+                <span class="border-bottom-animation left"></span>
+        </div>
+        <div class="form-group">
+                <input class="form-input ani email" placeholder="Education" type="text"/>
+                <span class="border-bottom-animation left"></span>
+        </div>
+        <div class="form-group">
+                <input class="form-input ani email" placeholder="Links" type="text"/>
+                <span class="border-bottom-animation left"></span>
+        </div>
     </div>
+    <div>
+        <div class="container">
+            <div class="center">
+                <button class="btn" name="register" type="submit" value="Register">
+                    <svg width="180px" height="60px" viewBox="0 0 180 60" class="border">
+                    <polyline points="179,1 179,59 1,59 1,1 179,1" class="bg-line" />
+                    <polyline points="179,1 179,59 1,59 1,1 179,1" class="hl-line" />
+                    </svg>
+                    <span id="registerBtn">SAVE CHANGES</span>
+                </button>
+            </div>
+        </div>
+        <div class="container">
+            <div class="center">
+                <button class="btn" name="register" type="submit" value="Register">
+                    <svg width="180px" height="60px" viewBox="0 0 180 60" class="border">
+                    <polyline points="179,1 179,59 1,59 1,1 179,1" class="bg-line" />
+                    <polyline points="179,1 179,59 1,59 1,1 179,1" class="hl-line" />
+                    </svg>
+                    <span id="registerBtn">DELETE PROFILE</span>
+                </button>
+            </div>
+        </div>
+    </div>
+    
 
 
 
