@@ -59,6 +59,7 @@
             return $this;
         }
 
+
         public function getError()
         {
                 return $this->error;
@@ -69,6 +70,7 @@
 
                 return $this;
         }
+
 
         public function canLogin() {
         
@@ -121,5 +123,7 @@
             $stmt= $conn->prepare($sql);
             $stmt->execute();
         }       
+
+
 
     }
