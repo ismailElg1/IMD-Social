@@ -6,38 +6,31 @@ if(Security::onlyLoggedInUsers()){
     $username = $_SESSION['username'];
     include_once(__DIR__ . "/partials/nav.php");
     include_once(__DIR__ . "/classes/Db.php");
-    $conn = Db::getInstance();
 
-    if(!empty($_POST['save'])){
-        $image = $_POST['file'];
-        $target_dir = "/upload";
-        $target_file = $target_dir . basename($_POST["file"]);
-        // Select file type
+    if(isset($_POST['save'])){
+        
+        $image = $_FILES['image']['name'];
+        $target_dir = "upload/";
+        $target_file = $target_dir . basename($_FILES["image"]["name"]);
+
         $imageFileType = strtolower(pathinfo($target_file,PATHINFO_EXTENSION));
-        // Valid file extensions
         $extensions_arr = array("jpg","jpeg","png","gif");
 
-        try{
-            // Check extension
-            if( in_array($imageFileType,$extensions_arr) ){
-                // Upload file
-                if(move_uploaded_file($_POST['file'],$target_dir.$image)){
-                    // Insert record
-                    echo "gelukt";
-                }
+        if( in_array($imageFileType,$extensions_arr) ){
+            if(move_uploaded_file($_FILES['image']['tmp_name'],$target_dir.$image)){
+                /*$conn = Db::getInstance();
+                $stmt= $conn->prepare("INSERT INTO users (image) VALUES (:image)");
+                $stmt->bindValue(":image",  $image);
+                echo "gelukt";*/
             }
         }
-        catch(Throwable $error){
-            $error = $error->getMessage();
-        }
-       
     }
 }
+
 else{
     //send user to login page
     header("Location: login.php");
 }
-
 
 ?><!DOCTYPE html>
 <html lang="en">
@@ -50,13 +43,13 @@ else{
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 </head>
 <body>
-    <form method="post">
+    <form action="" method="POST" enctype="multipart/form-data">
         <div class="profile-pic">
             <label class="-label" for="file">
                 <span class="fa fa-camera"></span>
                 <span id="changeImageText">Change Image</span>
             </label>
-            <input name="file" id="file" type="file" onchange="loadFile(event)"/>
+            <input type="file" name="image" id="file" onchange="loadFile(event)"/>
             <img src="https://upload.wikimedia.org/wikipedia/commons/9/9a/No_avatar.png" id="output" width="200" />
         </div>
 
