@@ -7,22 +7,23 @@ if(Security::onlyLoggedInUsers()){
     include_once(__DIR__ . "/partials/nav.php");
     include_once(__DIR__ . "/classes/Db.php");
 
-    if(isset($_POST['save'])){
-        
+    if(isset($_POST['save'])){    
         $image = $_FILES['image']['name'];
-        $target_dir = "upload/";
-        $target_file = $target_dir . basename($_FILES["image"]["name"]);
+        $target_file = "upload/" . basename($_FILES["image"]["name"]);
+        $image_path = "upload/".$image;
 
         $imageFileType = strtolower(pathinfo($target_file,PATHINFO_EXTENSION));
         $extensions_arr = array("jpg","jpeg","png","gif");
 
         if( in_array($imageFileType,$extensions_arr) ){
-            if(move_uploaded_file($_FILES['image']['tmp_name'],$target_dir.$image)){
-                /*$conn = Db::getInstance();
-                $stmt= $conn->prepare("INSERT INTO users (image) VALUES (:image)");
-                $stmt->bindValue(":image",  $image);
-                echo "gelukt";*/
+            if(move_uploaded_file($_FILES['image']['tmp_name'],$image_path)){
+                $conn = Db::getInstance();
+                $conn->prepare("INSERT INTO users (imgpath) VALUES ('$image_path')")->execute();
+                echo $image_path;
             }
+        }
+        else{
+            echo "Sorry, only JPG, JPEG, PNG & GIF files are allowed.";
         }
     }
 }
