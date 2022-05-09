@@ -17,7 +17,7 @@ if(!empty($_POST)){
      $_SESSION['username'] = $username;
      header('Location: index.php');
     }
-  
+
     }
     //catch
     catch(Exception $e){
