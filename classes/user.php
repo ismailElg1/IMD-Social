@@ -8,7 +8,7 @@
 
         public function getEmail()
         {
-                return $this->username;
+                return $this->email;
         }
 
         public function setEmail($email)
