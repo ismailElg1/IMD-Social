@@ -13,9 +13,10 @@ if(!empty($_POST)){
     $user->setPassword($password);
     
     if($user->canLogin()){
-     session_start();
-     $_SESSION['email'] = $email;
-     header('Location: index.php');
+        session_start();
+        $_SESSION['email'] = user::getEmailByUsername($username)['email'];
+        //var_dump(user::getEmailByUsername($username)['email']); 
+        header("Location: index.php");
     }
 
     }

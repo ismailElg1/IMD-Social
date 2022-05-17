@@ -10,14 +10,14 @@ if(Security::onlyLoggedInUsers()){
     include_once(__DIR__ . "/classes/User.php");
 
     if(!empty($_POST)){
-        if(!empty($_POST['change_username'])){
+        if(!empty($_POST['current_password'])){
+            $user = new User();
+            $user->setEmail($email);
             $conn = Db::getInstance();
-            $change_username = $_POST['change_username'];
-            $stmt = $conn->prepare("UPDATE users SET username = :change_username WHERE email = :email");
-            $stmt->bindValue(":change_username", $change_username);
-            $stmt->bindValue(":email", $email);
-            $stmt->execute();  
-            header("Location: profile.php");
+            $currentPassword = $_POST['current_password'];
+            $stmt = $conn->prepare("SELECT password FROM users WHERE email = :email");
+            $stmt -> bindValue(":email", $email);
+            $stmt -> execute();
         }
         
         if(!empty($_FILES['image'])){
@@ -34,6 +34,12 @@ if(Security::onlyLoggedInUsers()){
                     $conn->prepare("UPDATE users SET imgpath = '$image_path' WHERE email = '$email'")->execute();
                 }
             }
+        }
+        if(!empty($_POST['change_username'])){
+            $user = new User();
+            $user->setEmail($email);
+            $user->setUsername($_POST['change_username']);
+            $user->registerUsername(); 
         }
         if(!empty($_POST['email2'])){
             $user = new User();
@@ -56,7 +62,6 @@ if(Security::onlyLoggedInUsers()){
         }
 
         if(isset($_POST['delete'])){
-            include_once(__DIR__ . "/classes/User.php");
             $user = new User();
             $user->setEmail($email);
             $user->deleteUser($email);
@@ -113,6 +118,11 @@ else{
             <div class="form-group">
                     <label for="education">Change Education</label>
                     <input name="education" class="form-input ani email" placeholder="" type="text"/>
+                    <span class="border-bottom-animation left"></span>
+            </div>
+            <div class="form-group">
+                    <label for="current_password">Current Password</label>
+                    <input name="current_password" class="form-input ani email" placeholder="" type="password"/>
                     <span class="border-bottom-animation left"></span>
             </div>
         </div>

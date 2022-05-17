@@ -39,15 +39,23 @@
                 return $this->username;
         }
 
+        //set username but checks if not duplicate in database
         public function setUsername($username)
         {
-            if(empty($username)){
-                throw new Exception("Username cannot be empty.");
-            }
-            $this->username = $username;
+            $conn = Db::getInstance();
+            $stmt = $conn->prepare("SELECT username FROM users WHERE username = :username");
+            $stmt -> bindValue(":username", $username);
+            $stmt -> execute();
+            $user = ($stmt->fetch());
 
-            return $this;
+                if ($user) {
+                        throw new Exception("Username already exists");
+                        return false;
+                }
+                $this->username = $username;
+                return $this->username;
         }
+        
 
         public function getPassword()
         {
@@ -147,6 +155,18 @@
             }
         }
 
+        
+
+        public function registerUsername(){
+            $email = $this->email;
+            $username = $this->username;
+            $conn = Db::getInstance();
+            $stmt = $conn->prepare("UPDATE users SET username = :username WHERE email = :email");
+            $stmt->bindValue(":username", $username);
+            $stmt->bindValue(":email", $email);
+            $stmt->execute();
+        }
+
         public function registerEmail2(){
             $email = $this->email;
             $email2 = $this->email2;
@@ -177,19 +197,25 @@
             $stmt->execute();
         }
 
-        public function register() {
-            $options = [
-                'cost' => 12
-            ];
-            $password = password_hash($this->password, PASSWORD_DEFAULT, $options);
-            $email = $this->email;
-            $username = $this->username;
-            $conn = Db::getInstance();
-            $stmt= $conn->prepare("INSERT INTO users (email, username, password) VALUES (:email,:username,:password)");
-            $stmt->bindValue(":email", $email);
-            $stmt->bindValue(":username", $username);
-            $stmt->bindValue(":password", $password);
-            $stmt->execute();
+        public function register()
+        {
+                $conn = Db::getInstance();
+                $statement = $conn->prepare("select * from users where email = :email;");
+                $statement->bindValue(':email', $this->email);
+                $statement->execute();
+                $user = ($statement->fetch());
+
+                if ($user) {
+                        throw new Exception("Username already taken");
+                        return false;
+                }
+                $hash = password_hash($this->password, PASSWORD_DEFAULT);
+                $statement = $conn->prepare("insert into users (username, email, password) values (:username, :email, :password)");
+                $statement->bindValue(":username", $this->username);
+                $statement->bindValue(":email", $this->email);
+                $statement->bindValue(":password", $hash);
+                $statement->execute();
+                return true;
         }
 
         public function deleteUser() {
@@ -198,6 +224,28 @@
             $stmt= $conn->prepare($sql);
             $stmt->execute();
         }    
+
+        //get user by email by parameter email
+        public static function getUserByEmail($email) {
+            $conn = Db::getInstance();
+            $stmt = $conn->prepare("select * from users where email = :email");
+            $stmt -> bindValue(":email", $email);
+            $stmt -> execute();
+            $user = ($stmt->fetch());
+            return $user;
+        }
+
+        //get email by username by parameter username
+        public static function getEmailByUsername($username) {
+            $conn = Db::getInstance();
+            $stmt = $conn->prepare("select * from users where username = :username");
+            $stmt -> bindValue(":username", $username);
+            $stmt -> execute();
+            $user = ($stmt->fetch());
+            return $user;
+        }
+
+        
  
 
     }
