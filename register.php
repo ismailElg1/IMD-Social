@@ -13,9 +13,10 @@
             $user->setEmail($_POST['email']);
             $user->setPassword(($_POST['password']));
             $user->register();
+
             
             session_start();
-            $_SESSION['username'] = $user->getUsername();
+            $_SESSION['email'] = $user->getEmail();            
             header("Location: index.php");
         }
         catch(Throwable $error) {

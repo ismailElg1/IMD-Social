@@ -3,7 +3,7 @@ if(!isset($_SESSION)){
     session_start();
     $loggedIn = false;
 }
-else if($username = $_SESSION['username']){
+else if($email = $_SESSION['email']){
     $loggedIn = true;
 }
 ?>

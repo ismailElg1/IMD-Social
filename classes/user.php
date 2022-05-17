@@ -1,14 +1,15 @@
 <?php
-    include_once(__DIR__ . "/Db.php");
+    include_once(__DIR__ . "/db.php");
 
     class User {
         private $email;
         private $username;
         private $password;
 
+
         public function getEmail()
         {
-                return $this->username;
+                return $this->email;
         }
 
         public function setEmail($email)
@@ -116,14 +117,12 @@
             $stmt->execute();
         }
 
-        //delete user from database
         public function deleteUser() {
             $conn = Db::getInstance();
             $sql = "DELETE FROM users WHERE username = '$this->username'";
             $stmt= $conn->prepare($sql);
             $stmt->execute();
-        }       
-
-
+        }    
+ 
 
     }
