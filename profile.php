@@ -36,29 +36,23 @@ if(Security::onlyLoggedInUsers()){
             }
         }
         if(!empty($_POST['email2'])){
-            $conn = Db::getInstance();
-            $email2 = $_POST['email2'];
-            $stmt = $conn->prepare("UPDATE users SET email2 = :email2 WHERE email = :email");
-            $stmt->bindValue(":email2", $email2);
-            $stmt->bindValue(":email", $email);
-            $stmt->execute();
+            $user = new User();
+            $user->setEmail($email);
+            $user->setEmail2($_POST['email2']);
+            $user->registerEmail2();
         }
         if(isset($_POST['bio'])){
-            $conn = Db::getInstance();
-            $bio = $_POST['bio'];
-            $stmt = $conn->prepare("UPDATE users SET bio = :bio WHERE email = :email");
-            $stmt->bindValue(":bio", $bio);
-            $stmt->bindValue(":email", $email);
-            $stmt->execute();
+            $user = new User();
+            $user->setEmail($email);
+            $user->setBio($_POST['bio']);
+            $user->registerBio();
         }
     
         if(isset($_POST['education'])){
-            $conn = Db::getInstance();
-            $education = $_POST['education'];
-            $stmt = $conn->prepare("UPDATE users SET education = :education WHERE email = :email");
-            $stmt->bindValue(":education", $education);
-            $stmt->bindValue(":email", $email);
-            $stmt->execute();
+            $user = new User();
+            $user->setEmail($email);
+            $user->setEducation($_POST['education']);
+            $user->registerEducation();
         }
 
         if(isset($_POST['delete'])){

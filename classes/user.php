@@ -5,6 +5,10 @@
         private $email;
         private $username;
         private $password;
+        private $email2;
+        private $bio;
+        private $education;
+        
 
 
         public function getEmail()
@@ -61,6 +65,47 @@
         }
 
 
+        public function getEmail2()
+        {
+                return $this->email2;
+        }
+
+
+        public function setEmail2($email2)
+        {
+                $this->email2 = $email2;
+
+                return $this;
+        }
+
+        public function getBio()
+        {
+                return $this->bio;
+        }
+
+        public function setBio($bio)
+        {
+                $this->bio = $bio;
+
+                return $this;
+        }
+
+
+        public function getEducation()
+        {
+                return $this->education;
+        }
+
+        public function setEducation($education)
+        {
+                $this->education = $education;
+
+                return $this;
+        }
+
+
+
+
         public function getError()
         {
                 return $this->error;
@@ -100,6 +145,36 @@
                 throw new Exception("Password not right.");
                 return false;
             }
+        }
+
+        public function registerEmail2(){
+            $email = $this->email;
+            $email2 = $this->email2;
+            $conn = Db::getInstance();
+            $stmt = $conn->prepare("UPDATE users SET email2 = :email2 WHERE email = :email");
+            $stmt->bindValue(":email2", $email2);
+            $stmt->bindValue(":email", $email);
+            $stmt->execute();
+        }
+
+        public function registerBio(){
+            $email = $this->email;
+            $bio = $this->bio;
+            $conn = Db::getInstance();
+            $stmt = $conn->prepare("UPDATE users SET bio = :bio WHERE email = :email");
+            $stmt->bindValue(":bio", $bio);
+            $stmt->bindValue(":email", $email);
+            $stmt->execute();
+        }
+
+        public function registerEducation(){
+            $email = $this->email;
+            $education = $this->education;
+            $conn = Db::getInstance();
+            $stmt = $conn->prepare("UPDATE users SET education = :education WHERE email = :email");
+            $stmt->bindValue(":education", $education);
+            $stmt->bindValue(":email", $email);
+            $stmt->execute();
         }
 
         public function register() {
