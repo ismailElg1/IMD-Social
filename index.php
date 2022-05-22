@@ -38,10 +38,14 @@ $user = User::getUserByEmail($_SESSION['email']);
     
     $posts = Post::getAll();
     foreach($posts as $post){
+        //get post id
+        $postId = $post['id'];
+        echo "<a href='projects/?id=$postId'>";
         echo "<div class='post'>";
         echo "<h1>".$post['title']."</h1>";
         echo "<img src='./upload/".$post['image']."' alt='".$post['title']."'>";
         echo "</div>";
+        echo "</a>";
     }
     ?>
     </div>
