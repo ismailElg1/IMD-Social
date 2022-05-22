@@ -1,6 +1,7 @@
 <?php
 include_once("bootstrap.php");
 include_once(__DIR__ . "/helpers/Security.php");
+include_once("./classes/post.php");
 if(Security::onlyLoggedInUsers()){
     if(!empty($_POST)){
         
@@ -29,7 +30,19 @@ $user = User::getUserByEmail($_SESSION['email']);
    <form action="" method="POST" enctype="multipart/form-data">
     <a href="./gallery.php">Add post</a>
    </form>  
+    <!-- print out all the posts -->
+    <?php
+   
     
+    $posts = Post::getAll();
+    foreach($posts as $post){
+        echo "<div class='post'>";
+        echo "<h1>".$post['title']."</h1>";
+        echo "<p>".$post['description']."</p>";
+        echo "<img src='./upload/".$post['image']."' alt='".$post['title']."'>";
+        echo "</div>";
+    }
+    ?>
    <a href="logout.php">Log out?</a>
 </body>
 </html>
