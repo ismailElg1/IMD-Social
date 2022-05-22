@@ -223,9 +223,16 @@
 
         public function deleteUser() {
             $conn = Db::getInstance();
-            $sql = "DELETE FROM users WHERE username = '$this->username'";
-            $stmt= $conn->prepare($sql);
+            //delete user from pdo
+            $stmt = $conn->prepare("DELETE FROM users WHERE email = :email");
+            $stmt->bindValue(":email", $this->email);
             $stmt->execute();
+            //delete user from session
+            $_SESSION = array();
+            session_destroy();
+            //redirect to login page
+            header("Location: ../login.php");
+
         }    
 
         //get user by email by parameter email
