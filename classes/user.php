@@ -46,12 +46,12 @@
             $stmt = $conn->prepare("SELECT username FROM users WHERE username = :username");
             $stmt -> bindValue(":username", $username);
             $stmt -> execute();
-            $user = ($stmt->fetch());
+            // $user = ($stmt->fetch());
 
-                if ($user) {
-                        throw new Exception("Username already exists");
-                        return false;
-                }
+            //     if ($user) {
+            //             throw new Exception("Username already exists");
+            //             return false;
+            //     }
                 $this->username = $username;
                 return $this->username;
         }
@@ -133,9 +133,9 @@
             $stmt -> bindValue(":username", $this -> username);
             $stmt -> execute();
             $user = ($stmt->fetch());
-            if(isset($user['password'])){
-                $hash = $user['password'];
-            }
+            // if(isset($user['password'])){
+            //     $hash = $user['password'];
+            // }
           
             if(!$user){
                 throw new Exception("User not exist.");
@@ -209,7 +209,10 @@
                         throw new Exception("Username already taken");
                         return false;
                 }
-                $hash = password_hash($this->password, PASSWORD_DEFAULT);
+                $options = [
+                    'cost' => 12
+                ];
+                $hash = password_hash($this->password, PASSWORD_DEFAULT, $options);
                 $statement = $conn->prepare("insert into users (username, email, password) values (:username, :email, :password)");
                 $statement->bindValue(":username", $this->username);
                 $statement->bindValue(":email", $this->email);
