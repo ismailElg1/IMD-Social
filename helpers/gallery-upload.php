@@ -62,10 +62,16 @@ if(isset($_POST['submit'])){
                         $post = new Post();
                         $post->setTitle($_POST['galleryTitle']);
                         $post->setDescription($_POST['galleryDesc']);
+                       
+
+
                         $post->setImage($fileNameNew);
                         $post->setUserId($user['id']);
                         $post->setCreatedAt(date('Y-m-d H:i:s'));
                         $post->save();
+
+                       
+                        header("Location: ../index.php");
                       
                     }
                     else{
