@@ -3,7 +3,7 @@ include_once("bootstrap.php");
 include_once(__DIR__ . "/helpers/Security.php");
 if(Security::onlyLoggedInUsers()){
     if(!empty($_POST)){
-        echo htmlspecialchars("hey");
+        
     }
 }
 else{
@@ -27,7 +27,7 @@ $user = User::getUserByEmail($_SESSION['email']);
     <?php include_once(__DIR__ . "/partials/nav.php")?>
    Welcome to the page
    <form action="" method="POST" enctype="multipart/form-data">
-    <button name="addPost">Add post</button>
+    <a href="./gallery.php">Add post</a>
    </form>  
     
    <a href="logout.php">Log out?</a>
