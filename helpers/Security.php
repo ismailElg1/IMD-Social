@@ -3,7 +3,7 @@
         public static function onlyLoggedInUsers() {
             session_start();
             if(!isset($_SESSION['email'])){
-                echo "not logged in";
+                echo htmlspecialchars("not logged in");
                 return false;
             }
             else{

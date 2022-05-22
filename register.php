@@ -41,7 +41,7 @@
     
     <?php include_once(__DIR__ . "/partials/nav.php")?>
             <?php if(isset($error)): ?>
-                <div class="errorMessage"><?php echo $error; ?></div>
+                <div class="errorMessage"><?php echo htmlspecialchars($error); ?></div>
             <?php endif; ?>
     <div id="registerForm" class="Form">
             

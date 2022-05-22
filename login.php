@@ -41,7 +41,7 @@ if(!empty($_POST)){
 <body>
     <?php include_once(__DIR__ . "/partials/nav.php")?>
     <?php if(!empty($error)){ ?>
-                <div id="loginError"class="errorMessage"><?php echo $error; ?></div>
+                <div id="loginError"class="errorMessage"><?php echo htmlspecialchars($error); ?></div>
             <?php } ?>
     <div id="loginForm" class="Form">
         <form method="post" action="">
