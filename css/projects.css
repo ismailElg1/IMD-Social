@@ -23,7 +23,7 @@
     flex-direction: row;
     justify-content: center;
     align-items: center;
-  
+    margin-bottom: 25px;
     
 }
 .container .tagBox .tag{
@@ -38,10 +38,68 @@
 }
 .container a{
     margin-top: 25px;
-    color: white;
-   
 }
 .container .desc{
     font-size: 1.2em;
     margin-top: 15px;
+}
+.commentBox button{
+    background-color: rgba(255, 255, 255, 0);
+    color: white;
+    border: 1px solid white;
+ 
+    padding: 10px;
+    margin-top: 10px;
+    font-size: 1em;
+    cursor: pointer;
+    width: 100%;
+}
+html, body{
+    height: 140vh;
+
+}
+
+.comments{
+    margin-top: 15px;
+    color: white;
+    font-family: 'Comfortaa', sans-serif;
+    overflow-y: scroll;
+    max-height: 250px;
+    padding-right: 10px;
+}
+.comments::-webkit-scrollbar {
+    width: 10px;
+  
+  }
+
+  
+  /* Track */
+  .comments::-webkit-scrollbar-track {
+    background: #ffffff;
+    border-radius: 15px;
+  }
+  
+  /* Handle */
+  .comments::-webkit-scrollbar-thumb {
+    background: rgb(143, 50, 14);
+    border-radius: 15px;
+  }
+  
+  /* Handle on hover */
+  .comments::-webkit-scrollbar-thumb:hover {
+    background: #555;
+  }
+.comments .comment-date{
+    float: right;
+    opacity: 0.5;
+}
+.comments .comment{
+    border-bottom: 1px solid rgba(255, 255, 255, 0.349);
+    margin-top: 15px;
+}
+.comments .comment-username{
+    font-weight: bold;
+}
+.comments .comment-body{
+    font-weight: 100;
 }
