@@ -65,7 +65,7 @@ if(Security::onlyLoggedInUsers()){
             $user = new User();
             $user->setEmail($email);
             $user->deleteUser($email);
-            header("Location: login.php");
+
         }
 
     }
@@ -86,6 +86,8 @@ else{
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <?php include_once(__DIR__ . "/helpers/fonts.php")?>
     <title>Profile</title>
+    <link rel="stylesheet" type="text/css" href="css/style.css">
+    <link rel="stylesheet" type="text/css" href="css/button.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 </head>
 <body>
@@ -96,28 +98,52 @@ else{
                 <span id="changeImageText">Change Profile Picture</span>
             </label>
             <input type="file" name="image" id="file" onchange="loadFile(event)"/>
-            <img src="https://upload.wikimedia.org/wikipedia/commons/9/9a/No_avatar.png" id="output" width="200" />
+            <img src="<?php 
+            //get the user image
+            $conn = Db::getInstance();
+            $stmt = $conn->prepare("SELECT imgpath FROM users WHERE email = :email");
+            $stmt -> bindValue(":email", $email);
+            $stmt -> execute();
+            $result = $stmt->fetch();
+            
+            if($result['imgpath'] == NULL){
+                echo "https://upload.wikimedia.org/wikipedia/commons/9/9a/No_avatar.png";
+            }
+            else{
+                echo $result['imgpath'];
+            }
+
+            ?>" id="output" width="200" />
         </div>
 
         <div id="changeForm" class="Form">
+            <?php 
+          
+            $conn = Db::getInstance();
+            $stmt = $conn->prepare("SELECT * FROM users WHERE email = :email");
+            $stmt -> bindValue(":email", $email);
+            $stmt -> execute();
+            $user = $stmt->fetch();
+
+            ?>
             <div class="form-group">
                     <label for="change_username">Change Username</label>
-                    <input name="change_username" id="change_username" class="form-input ani email" placeholder="" type="text"/>
+                    <input name="change_username" id="change_username" class="form-input ani email" placeholder="<?php echo $user['username']; ?>" type="text"/>
                     <span class="border-bottom-animation left"></span>
             </div>
             <div class="form-group">
                     <label for="email2">Change Second Email</label>
-                    <input name="email2" class="form-input ani email" placeholder="" type="text"/>
+                    <input name="email2" class="form-input ani email" placeholder="<?php echo $user['email2']; ?>" type="text"/>
                     <span class="border-bottom-animation left"></span>
             </div>
             <div class="form-group">
                     <label for="bio">Change Bio</label>
-                    <input name="bio" class="form-input ani email" placeholder="" type="text"/>
+                    <input name="bio" class="form-input ani email" placeholder="<?php echo $user['bio']; ?>" type="text"/>
                     <span class="border-bottom-animation left"></span>
             </div>
             <div class="form-group">
                     <label for="education">Change Education</label>
-                    <input name="education" class="form-input ani email" placeholder="" type="text"/>
+                    <input name="education" class="form-input ani email" placeholder="<?php echo $user['education']; ?>" type="text"/>
                     <span class="border-bottom-animation left"></span>
             </div>
             <div class="form-group">
@@ -127,7 +153,7 @@ else{
             </div>
         </div>
         <div>
-            <div class="container">
+            <div class="container"  style="margin-top: -80px">
                 <div class="center">
                     <button class="btn" name="save" type="submit" value="Delete profile">
                         <svg width="180px" height="60px" viewBox="0 0 180 60" class="border">
@@ -138,7 +164,12 @@ else{
                     </button>
                 </div>
             </div>
-            <div class="container">
+            
+           
+    </form>
+    <form action="./helpers/delete.php" method="post">
+
+    <div class="container"  style="margin-top: 80px">
                 <div class="center">
                     <button class="btn" name="delete" type="submit" value="Delete profile">
                         <svg width="180px" height="60px" viewBox="0 0 180 60" class="border">
