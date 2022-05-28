@@ -24,6 +24,22 @@ foreach($tags as $tag){
 }
 
 echo "</div>";
+session_start();
+
+$conn = Db::getInstance();
+$stmt = $conn->prepare("select * from users where email = :email");
+$stmt -> bindValue(":email", $_SESSION['email']);
+$stmt -> execute();
+$user = ($stmt->fetch());
+
+if($user['id'] == $post['user_id']){
+    $postId = $post['id'];
+    $userId = $user['id'];
+    echo "<a href='../helpers/deleteProject.php/?id=$postId&user=$userId'>DELETE PROJECT</a><br><br>";
+
+}
+
+
 echo "<a href='../index.php'>Go back</a>";
 echo "</div>";
 
