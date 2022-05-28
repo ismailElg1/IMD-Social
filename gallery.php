@@ -43,6 +43,7 @@ $user = User::getUserByEmail($_SESSION['email']);
             
     <div class="form-group"><input class="form-input ani" type="text" name="galleryDesc" placeholder="Project description..."><span class="border-bottom-animation left"></span></div>
     <div class="form-group"><input class="form-input ani" type="file" name="images[]" value='' multiple><span class="border-bottom-animation left"></span></div>
+    <div class="form-group"><input class="form-input ani" type="text" name="tags" placeholder="Tags (Add comma between them)"><span class="border-bottom-animation left"></span></div>
    
     <div class="container">
                 <div class="center">
