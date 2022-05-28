@@ -12,9 +12,13 @@ else if($email = $_SESSION['email']){
     <a href="#">Imageo</a>
 </div>
 <div id="nav" class="navMenu">
-      <a href="index.php">Home</a>
-      <a href="profile.php">Profile</a>
-      <a href="login.php">Login</a>
-      <a href="register.php">Register</a>
+    <?php if($loggedIn==true){
+        echo '  <a href="index.php">Home</a>
+        <a href="profile.php">Profile</a>';
+    }
+    else{
+        echo ' <a href="login.php">Login</a>
+        <a href="register.php">Register</a>';
+    }?>
 </div>
 
