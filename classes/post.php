@@ -8,6 +8,7 @@
         private $userId;
         private $image;
         private $createdAt;
+        private $tags;
 
         public function getTitle()
         {
@@ -111,16 +112,25 @@
             return $this;
         }
 
+        public function getTags(){
+            return $this->tags;
+        }
+
+        public function setTags($tags){
+            $this->tags = $tags;
+            return $this;
+        }
 
         public function save()
         {
             $conn = Db::getInstance();
-            $stmt = $conn->prepare("INSERT INTO posts (title, description, user_id, image, created_at) VALUES (:title, :description, :user_id, :image, :created_at)");
+            $stmt = $conn->prepare("INSERT INTO posts (title, description, user_id, image, created_at, tags) VALUES (:title, :description, :user_id, :image, :created_at, :tags)");
             $stmt->bindValue(":title", $this->title);
             $stmt->bindValue(":description", $this->description);
             $stmt->bindValue(":user_id", $this->userId);
             $stmt->bindValue(":image", $this->image);
             $stmt->bindValue(":created_at", $this->createdAt);
+            $stmt->bindValue(":tags", $this->tags);
             $stmt->execute();
         }
 
