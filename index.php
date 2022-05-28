@@ -23,6 +23,7 @@ $user = User::getUserByEmail($_SESSION['email']);
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Imageo - <?php echo htmlspecialchars($user['username']);?></title>
+    <?php include_once(__DIR__ . "/helpers/fonts.php")?>
     <link rel="stylesheet" type="text/css" href="css/style.css">
     <link rel="stylesheet" type="text/css" href="css/button.css">
     <link rel="stylesheet" href="./css/gallery.css">
@@ -39,7 +40,7 @@ $user = User::getUserByEmail($_SESSION['email']);
     foreach($posts as $post){
         //get post id
         $postId = $post['id'];
-        echo "<a href='projects/?id=$postId'>";
+        echo "<a class='projectName' href='projects/?id=$postId'>";
         echo "<div class='post'>";
         echo "<h1>".$post['title']."</h1>";
         echo "<img src='./upload/".$post['image']."' alt='".$post['title']."'>";

@@ -38,7 +38,11 @@
     color: white;
 }
 .post:hover img{
-
+    transition: all .5s ease;
  transform: scale(1.2);
 
+}
+.container .projectName{
+    font-family: 'Montserrat', sans-serif;
+    text-decoration: none;
 }
