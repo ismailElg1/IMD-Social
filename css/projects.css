@@ -58,7 +58,9 @@ html, body{
     height: 140vh;
 
 }
-
+.commentBox{
+    margin-top: -50px;
+}
 .comments{
     margin-top: 15px;
     color: white;
@@ -66,26 +68,24 @@ html, body{
     overflow-y: scroll;
     max-height: 250px;
     padding-right: 10px;
+
 }
 .comments::-webkit-scrollbar {
     width: 10px;
   
   }
 
-  
-  /* Track */
+
   .comments::-webkit-scrollbar-track {
     background: #ffffff;
     border-radius: 15px;
   }
   
-  /* Handle */
   .comments::-webkit-scrollbar-thumb {
     background: rgb(143, 50, 14);
     border-radius: 15px;
   }
   
-  /* Handle on hover */
   .comments::-webkit-scrollbar-thumb:hover {
     background: #555;
   }
