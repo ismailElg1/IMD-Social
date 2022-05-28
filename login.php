@@ -40,9 +40,9 @@ if(!empty($_POST)){
 </head>
 <body>
     <?php include_once(__DIR__ . "/partials/nav.php")?>
-    <?php if(!empty($error)){ ?>
-                <div id="loginError"class="errorMessage"><?php echo htmlspecialchars($error); ?></div>
-            <?php } ?>
+   
+                <div id="loginError" class="errorMessage"></div>
+       
     <div id="loginForm" class="Form">
         <form method="post" action="">
             
@@ -69,5 +69,6 @@ if(!empty($_POST)){
             <button id="forget" name="forgetPassword">Forget password?</button>
         </form>
     </div>
+    <script src="js/login.js"></script> 
 </body>
 </html>
