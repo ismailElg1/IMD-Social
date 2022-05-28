@@ -40,9 +40,9 @@
 <body>
     
     <?php include_once(__DIR__ . "/partials/nav.php")?>
-            <?php if(isset($error)): ?>
-                <div class="errorMessage"><?php echo htmlspecialchars($error); ?></div>
-            <?php endif; ?>
+          
+                <div class="errorMessage"></div>
+       
     <div id="registerForm" class="Form">
             
         <form method="post" action=>
@@ -74,5 +74,6 @@
             </div>
         </form>
     </div>
+    <script src="js/register.js"></script> 
 </body>
 </html>
