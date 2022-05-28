@@ -221,17 +221,18 @@
                 return true;
         }
 
-        public function deleteUser() {
+        public function deleteUser() {            
+
             $conn = Db::getInstance();
-            //delete user from pdo
+          
             $stmt = $conn->prepare("DELETE FROM users WHERE email = :email");
             $stmt->bindValue(":email", $this->email);
             $stmt->execute();
-            //delete user from session
+         
             $_SESSION = array();
             session_destroy();
-            //redirect to login page
-            header("Location: ../login.php");
+           
+            header("Location: ../logout.php");
 
         }    
 
