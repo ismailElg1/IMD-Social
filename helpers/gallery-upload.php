@@ -1,7 +1,7 @@
 <?php
 include_once("../classes/post.php");
 if(isset($_POST['submit'])){
- 
+
     function pre_r($array){
         echo "<pre>";
         print_r($array);
@@ -31,69 +31,78 @@ if(isset($_POST['submit'])){
     
         return $file_ary;
     }
-
-    if(isset($_FILES['images'])){
+ 
+    if(!empty($_POST['galleryDesc'])&&!empty($_POST['galleryTitle'])){
+        if(isset($_FILES['images'])){
        
-        $file_array = reArrayFiles($_FILES['images']);
-        
-        foreach($file_array as $file){
-            $fileName = $file['name'];
-            $fileTmpName = $file['tmp_name'];
-            $fileSize = $file['size'];
-            $fileError = $file['error'];
-            $fileType = $file['type'];
-            $fileExt = explode('.', $fileName);
-            $fileActualExt = strtolower(end($fileExt));
-            $allowed = array('jpg', 'jpeg', 'png');
-            if(in_array($fileActualExt, $allowed)){
-           
-                if($fileError === 0){
-                   
-                    if($fileSize < 1000000){
-                   
-                        include_once('../classes/user.php');
-
-                        session_start();
-                        $user = User::getUserByEmail($_SESSION['email']);
-
-                        $fileNameNew = uniqid('', true).".".$fileActualExt;
-                        $fileDestination = '../upload/'.$fileNameNew;
-                        move_uploaded_file($fileTmpName, $fileDestination);
-                        $post = new Post();
-                        $post->setTitle($_POST['galleryTitle']);
-                        $post->setDescription($_POST['galleryDesc']);
+            $file_array = reArrayFiles($_FILES['images']);
+            
+            foreach($file_array as $file){
+                $fileName = $file['name'];
+                $fileTmpName = $file['tmp_name'];
+                $fileSize = $file['size'];
+                $fileError = $file['error'];
+                $fileType = $file['type'];
+                $fileExt = explode('.', $fileName);
+                $fileActualExt = strtolower(end($fileExt));
+                $allowed = array('jpg', 'jpeg', 'png');
+                if(in_array($fileActualExt, $allowed)){
+               
+                    if($fileError === 0){
                        
-
-
-                        $post->setImage($fileNameNew);
-                        $post->setUserId($user['id']);
-                        $post->setCreatedAt(date('Y-m-d H:i:s'));
-                        $post->save();
-
+                        if($fileSize < 1000000){
                        
-                        header("Location: ../index.php");
-                      
+                            include_once('../classes/user.php');
+    
+                            session_start();
+                            $user = User::getUserByEmail($_SESSION['email']);
+    
+                            $fileNameNew = uniqid('', true).".".$fileActualExt;
+                            $fileDestination = '../upload/'.$fileNameNew;
+                            move_uploaded_file($fileTmpName, $fileDestination);
+                            $post = new Post();
+                            $post->setTitle($_POST['galleryTitle']);
+                            $post->setDescription($_POST['galleryDesc']);
+                           
+    
+    
+                            $post->setImage($fileNameNew);
+                            $post->setUserId($user['id']);
+                            $post->setCreatedAt(date('Y-m-d H:i:s'));
+                            $post->save();
+    
+                           
+                            header("Location: ../index.php");
+                          
+                        }
+                        else{
+                            echo "Your file is too big";
+                        }
                     }
                     else{
-                        echo "Your file is too big";
+                        echo $phpFileUploadErrors[$fileError];
                     }
                 }
                 else{
-                    echo $phpFileUploadErrors[$fileError];
+                    echo "You cannot upload files of this type";
+                   
                 }
-            }
-            else{
-                echo "You cannot upload files of this type";
-               
-            }
-        } 
-        
-      
+            } 
+            
+          
+        }
+        else{
+            echo 'No files uploaded';
+        }
     }
     else{
-        echo 'No files uploaded';
+        echo "Please fill in all fields";
     }
+    
+  
    
+    //echo go back link
+    echo '<br><a href="../gallery.php">Go Back</a>';
 
   
     //create new post
