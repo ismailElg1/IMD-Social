@@ -113,6 +113,7 @@ if(isset($_POST['submit'])){
         }
         else{
             $tags = array();
+            echo "Please fill in all tags";
         }
     }
     else{
