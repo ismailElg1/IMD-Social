@@ -246,6 +246,16 @@
             return $user;
         }
 
+        //get user by id
+        public static function getUserById($id) {
+            $conn = Db::getInstance();
+            $stmt = $conn->prepare("select * from users where id = :id");
+            $stmt -> bindValue(":id", $id);
+            $stmt -> execute();
+            $user = ($stmt->fetch());
+            return $user;
+        }
+
         //get email by username by parameter username
         public static function getEmailByUsername($username) {
             $conn = Db::getInstance();
